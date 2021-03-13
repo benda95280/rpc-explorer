@@ -3,7 +3,7 @@ if(difficultyData)
     div(class="float-left", style="height: 40px; width: 40px; font-size: 12px;")
       span
         i(class="fas fa-dumbbell fa-2x mr-2", style="margin-top: 6px;")
-    span(class="font-weight-bold") #{difficultyData.name}
+    span(class="font-weight-bold") #{__(difficultyData.name)}
 
     p(class="lead")
       span.mr-2.border-dotted(data-toggle="tooltip", title=parseFloat(difficultyData.diff).toLocaleString())

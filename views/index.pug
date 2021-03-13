@@ -4,7 +4,7 @@ block headContent
 	title Home
 
 block content
-	h1.h3 #{coinConfig.siteTitle}
+	h1.h3 #{__('dashboard')}
 	hr
 
 	if (getblockchaininfo == null)
@@ -17,7 +17,7 @@ block content
 		if (config.demoSite && session.hideHomepageBanner != "true")
 			div(class="alert alert-primary alert-dismissible shadow-sm mb-4", role="alert")
 				span
-					strong #{coinConfig.siteTitle}
+					strong #{coinConfig.siteTitle} 
 					span  is
 					a(href="https://github.com/npq7721/rpc-explorer", target="_blank") open-source
 					span  and easy to set up. It can communicate with your
@@ -75,7 +75,7 @@ block content
 
 		div(class="card mb-4 shadow-sm")
 			div(class="card-header")
-				h2(class="h6 mb-0") Network Summary
+				h2(class="h6 mb-0") #{__('Network_Summary')}
 			div(class="card-body")
 				div(class="row")
 					if(getblockchaininfo && getblockchaininfo.blocks)
@@ -83,7 +83,7 @@ block content
 							div(class="float-left", style="height: 40px; width: 40px;")
 								span
 									i(class="fas fa-cubes fa-2x mr-2", style="margin-top: 6px;")
-							span(class="font-weight-bold") Heights
+							span(class="font-weight-bold") #{__('Heights')}
 							p(class="lead")
 								span(id="current-height") #{getblockchaininfo.blocks}
 					div(class=networkSummaryColumnClass)
@@ -92,7 +92,7 @@ block content
 								i(class="fas fa-tachometer-alt fa-2x mr-2", style="margin-top: 6px;")
 						- var hashrateData = utils.formatLargeNumber(miningInfo.networkhashps, 3);
 
-						span(class="font-weight-bold") Hashrate
+						span(class="font-weight-bold") #{__('Hashrate')}
 
 						p(class="lead")
 							span(id="hashrate") #{hashrateData[0]}
@@ -103,7 +103,7 @@ block content
 							span
 								i(class="fas fa-circle-notch fa-2x mr-2", style="margin-top: 6px; margin-left: 3px;")
 
-						span(class="font-weight-bold") Circulating Supply
+						span(class="font-weight-bold") #{__('Circulating_Supply')}
 						p(id="supply" class="lead")
 							div(class="spinner-border lazyload", loadurl=`/api/supply`, loadeleid="supply", role="status")
 								span(class="sr-only") Loading...
@@ -113,7 +113,7 @@ block content
 								span
 									i(class="fas fa-calculator fa-2x mr-2", style="margin-top: 6px; margin-left: 3px;")
 
-							span(class="font-weight-bold") #{coinConfig.masternodeName} Count
+							span(class="font-weight-bold") #{__('Smartnode_Count', coinConfig.masternodeName)}
 							p(id="mncount" class="lead")
 								div(class="spinner-border lazyload", loadurl=`/api/getmasternodecount`, loadeleid="mncount", role="status")
 									span(class="sr-only") Loading...
@@ -122,7 +122,7 @@ block content
 								span
 									i(class="fas fa-calculator fa-2x mr-2", style="margin-top: 6px; margin-left: 3px;")
 
-							span(class="font-weight-bold") Reachable #{coinConfig.masternodeName}
+							span(class="font-weight-bold")  #{__('Reachable_Smartnode', coinConfig.masternodeName)}
 							p(id="mnreachable" class="lead")
 								div(class="spinner-border lazyload", loadurl=`/api/getmasternodereachablecount`, loadeleid="mnreachable", role="status")
 									span(class="sr-only") Loading...
@@ -132,7 +132,7 @@ block content
 								span
 									i(class="fas fa-sign-out-alt fa-2x mr-2", style="margin-top: 6px; margin-left: 3px;")
 
-							span(class="font-weight-bold") Total Transactions
+							span(class="font-weight-bold") #{__('Total_Transactions')}
 
 							p(id="txStats" class="lead") #{txStats.totalTxCount.toLocaleString()}
 
@@ -141,7 +141,7 @@ block content
 							span
 								i(class="fas fa-unlock-alt fa-2x mr-2", style="margin-top: 6px; margin-left: 3px;")
 
-						span(class="font-weight-bold") Unconfirmed Transactions
+						span(class="font-weight-bold") #{__('Unconfirmed_Transactions')}
 
 						p(class="lead")
 							label(id="mempoolCount") #{mempoolInfo.size.toLocaleString()} tx
@@ -154,7 +154,7 @@ block content
 								i(class="fas fa-bolt fa-2x mr-2", style="margin-top: 6px; margin-left: 6px;")
 
 						- var chainworkData = utils.formatLargeNumber(parseInt("0x" + getblockchaininfo.chainwork), 2);
-						span(class="font-weight-bold") Chainwork
+						span(class="font-weight-bold") #{__('Chainwork')}
 
 						p(class="lead")
 							span.mr-2.border-dotted(data-toggle="tooltip", title=getblockchaininfo.chainwork.replace(/^0+/, ''))
@@ -190,17 +190,15 @@ block content
 								p(id="price" class="lead") -
 
 
-		//include includes/tools-card.pug
+		//include includes/tools-card.pug#{__('Network_Summary')}
 		ul(class='nav nav-tabs mb-3')
 			li(class="nav-item")
-				a(id="tab-blocks-nav" data-toggle="tab", href=`#tab-blocks`, class="nav-link active", role="tab", onclick=`loadDataToTable("blocks-data", HEADERS.blocks_table_headers, "/api/getblocks", true, true)`) Blocks
+				a(id="tab-blocks-nav" data-toggle="tab", href=`#tab-blocks`, class="nav-link active", role="tab", onclick=`loadDataToTable("blocks-data", HEADERS.blocks_table_headers, "/api/getblocks", true, true)`) #{__('blocks')}
 			li(class="nav-item")
-				a(data-toggle="tab", href=`#tab-transactions`, class="nav-link", role="tab", onclick=`loadDataToTable("transactions-table", HEADERS.transactions_table_headers,"/api/getlatesttxids?blocks=10")`) Latest Transactions
-			li(class="nav-item")
-				a(data-toggle="tab", href=`#tab-richlist`, class="nav-link", role="tab", onclick=`loadDataToTable("richlist-table", HEADERS.rich_list_table_headers, "/api/queryrichlist", true, false)`) Rich List
+				a(data-toggle="tab", href=`#tab-transactions`, class="nav-link", role="tab", onclick=`loadDataToTable("transactions-table", HEADERS.transactions_table_headers,"/api/getlatesttxids?blocks=10")`) #{__('latesttransactions')}
 			if(coinConfig.assetSupported)
 				li(class="nav-item")
-					a(data-toggle="tab", href=`#tab-assets`, class="nav-link", role="tab", onclick=`loadDataToTable("assets-table", HEADERS.asset_table_headers,"/api/queryassets", true, true)`) Assets
+					a(data-toggle="tab", href=`#tab-assets`, class="nav-link", role="tab", onclick=`loadDataToTable("assets-table", HEADERS.asset_table_headers,"/api/queryassets", true, true)`) #{__('assets')}
 			if(coinConfig.masternodeSupported)
 				li(class="nav-item")
 					a(data-toggle="tab", href=`#tab-masternodes`, class="nav-link", role="tab", onclick=`loadDataToTable("masternode-table", HEADERS.masternode_table_headers,"/api/getnodelist", false, false, true)`) #{coinConfig.masternodeName}
@@ -214,12 +212,6 @@ block content
 			div(id="tab-transactions", class="card mb-4 shadow-sm tab-pane", role="tabpanel")
 				- var tableId = "transactions-table";
 				- var headers = coinConfig.tableHeaders.transactions_table_headers;
-				- var lazyload = false;
-				- var clickTriggerId = null;
-				include ./includes/table-template.pug
-			div(id="tab-richlist", class="card mb-4 shadow-sm tab-pane", role="tabpanel")
-				- var tableId = "richlist-table";
-				- var headers = coinConfig.tableHeaders.rich_list_table_headers;
 				- var lazyload = false;
 				- var clickTriggerId = null;
 				include ./includes/table-template.pug

@@ -150,7 +150,7 @@ module.exports = {
 			showToolsSubheader:(process.env.BTCEXP_UI_SHOW_TOOLS_SUBHEADER == "true"),
 			dropdowns:[
 				{
-					title:"Related Sites",
+					title:"relatedsites.name",
 					links: coins[currentCoin].relatedSites
 				}
 			]
@@ -160,18 +160,18 @@ module.exports = {
 	credentials: credentials,
 
 	siteTools:[
-		{name:"Node Status", url:"/node-status", desc:"Summary of this node: version, network, uptime, etc.", fontawesome:"fas fa-broadcast-tower", enabled : true},
-		{name:"Peers", url:"/peers", desc:"Detailed info about the peers connected to this node.", fontawesome:"fas fa-sitemap", enabled : true},
+		{name:"sitetools.content.node_status", url:"/node-status", desc:"Summary of this node: version, network, uptime, etc.", fontawesome:"fas fa-broadcast-tower", enabled : true},
+		{name:"sitetools.content.peers", url:"/peers", desc:"Detailed info about the peers connected to this node.", fontawesome:"fas fa-sitemap", enabled : true},
 
-		{name:"Browse Blocks", url:"/blocks", desc:"Browse all blocks in the blockchain.", fontawesome:"fas fa-cubes", enabled : true},
-		{name:"Transaction Stats", url:"/tx-stats", desc:"See graphs of total transaction volume and transaction rates.", fontawesome:"fas fa-chart-bar", enabled : true},
+		{name:"sitetools.content.browse_blocks", url:"/blocks", desc:"Browse all blocks in the blockchain.", fontawesome:"fas fa-cubes", enabled : true},
+		{name:"sitetools.content.transaction_stats", url:"/tx-stats", desc:"See graphs of total transaction volume and transaction rates.", fontawesome:"fas fa-chart-bar", enabled : true},
 
-		{name:"Mempool Summary", url:"/mempool-summary", desc:"Detailed summary of the current mempool for this node.", fontawesome:"fas fa-clipboard-list", enabled : true},
-		{name:"Unconfirmed Transactions", url:"/unconfirmed-tx", desc:"Browse unconfirmed/pending transactions.", fontawesome:"fas fa-unlock-alt", enabled : true},
+		{name:"sitetools.content.mempool_summary", url:"/mempool-summary", desc:"Detailed summary of the current mempool for this node.", fontawesome:"fas fa-clipboard-list", enabled : true},
+		{name:"sitetools.content.unconfirmed_transactions", url:"/unconfirmed-tx", desc:"Browse unconfirmed/pending transactions.", fontawesome:"fas fa-unlock-alt", enabled : true},
 
-		{name:"RPC Browser", url:"/rpc-browser", desc:"Browse the RPC functionality of this node. See docs and execute commands.", fontawesome:"fas fa-book" , enabled : (process.env.BTCEXP_BASIC_AUTH_PASSWORD !== undefined)},
-		{name:"RPC Terminal", url:"/rpc-terminal", desc:"Directly execute RPCs against this node.", fontawesome:"fas fa-terminal", enabled : (process.env.BTCEXP_BASIC_AUTH_PASSWORD !== undefined)},
-		{name: "APIs", url:"/api", desc:"Restful APIs service by this explorer", fontawesome:"fas fa-code", enabled : true},
+		{name:"sitetools.content.rpc_browser", url:"/rpc-browser", desc:"Browse the RPC functionality of this node. See docs and execute commands.", fontawesome:"fas fa-book" , enabled : (process.env.BTCEXP_BASIC_AUTH_PASSWORD !== undefined)},
+		{name:"sitetools.content.rpc_terminal", url:"/rpc-terminal", desc:"Directly execute RPCs against this node.", fontawesome:"fas fa-terminal", enabled : (process.env.BTCEXP_BASIC_AUTH_PASSWORD !== undefined)},
+		{name:"sitetools.content.apis", url:"/api", desc:"Restful APIs service by this explorer", fontawesome:"fas fa-code", enabled : true},
 
 		{name:(coins[currentCoin].name + " Fun"), url:"/fun", desc:"See fun/interesting historical blockchain data.", fontawesome:"fas fa-certificate", enabled : true}
 	],

@@ -1,8 +1,11 @@
 var i18n = require('i18n');
+
 i18n.configure({
-  locales:['en', 'es', 'vn'],
+  locales:['fr', 'en', 'es', 'vn'],
   directory: __dirname + '/locales',
-	defaultLocale: 'en',
+  defaultLocale: 'en',
+  objectNotation: true,
+  updateFiles: false,
   queryParameter: 'lang',
   cookie: 'lang',
   autoReload: true,
@@ -12,7 +15,7 @@ i18n.configure({
   },
   preserveLegacyCase: true,
   extension: '.js',
-  //register: global
+  register: global
 });
-//i18n.setLocale('en');
+i18n.setLocale('en');
 module.exports = i18n;

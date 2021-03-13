@@ -46,31 +46,31 @@ html(lang="en")
 							if (config.siteTools)
 								li(class="nav-item dropdown")
 									a(class="nav-link dropdown-toggle", href="javascript:void(0)", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
-										span  Tools
+										span  #{__("sitetools.name")}
 									div(class="dropdown-menu shadow", aria-label="Tools Items")
 										each item in config.siteTools
 											if(item.enabled)
 												a(class="dropdown-item", href=item.url)
 													i(class=item.fontawesome, style="width: 20px; margin-right: 10px;")
-													span  #{item.name}
+													span  #{__(item.name)}
 
 							if (config.site.header.dropdowns)
 								each dropdown, ddIndex in config.site.header.dropdowns
 									li(class="nav-item dropdown")
 										a(class="nav-link dropdown-toggle", href="javascript:void(0)", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
-											span  #{dropdown.title}
+											span  #{__(dropdown.title)}
 										div(class="dropdown-menu shadow", aria-label=(dropdown.title + " Items"))
 											each dropdownLink in dropdown.links
 												a(class="dropdown-item", href=dropdownLink.url)
 													if (dropdownLink.imgUrl)
 														img(src=dropdownLink.imgUrl, style="width: 24px; height: 24px; margin-right: 8px;", alt=dropdownLink.name)
-													span  #{dropdownLink.name}
+													span  #{__(dropdownLink.name)}
 
 
 						form(method="post", action="/search", class="form-inline mr-3")
 							input(type="hidden", name="_csrf", value=csrfToken)
 							div(class="input-group input-group-sm")
-								input(type="text", class="form-control form-control-sm", name="query", placeholder="block height/hash, txid, address", value=(query))
+								input(type="text", class="form-control form-control-sm", name="query", placeholder=__("headersearchplaceholder"), value=(query))
 								div(class="input-group-append")
 									button(type="submit", class="btn btn-primary")
 										i(class="fas fa-search")
@@ -81,7 +81,7 @@ html(lang="en")
 									i(class="fas fa-cog mr-1")
 								div(class="dropdown-menu dropdown-menu-right shadow", aria-labelledby="navbarDropdown")
 									if (coinConfig.currencyUnits)
-										span(class="dropdown-header") Currency Units
+										span(class="dropdown-header") #{__("headergear.currencyunits")}
 										each item in coinConfig.currencyUnits
 											if (item.type == "native" || (config.queryExchangeRates && !config.privacyMode))
 												a(class="dropdown-item", href=("/changeSetting?name=currencyFormatType&value=" + item.values[0]))
@@ -90,15 +90,15 @@ html(lang="en")
 															i(class="fas fa-check")
 													span  #{item.name}
 
-									span(class="dropdown-header") Theme
+									span(class="dropdown-header") #{__("headergear.theme.name")}
 									a(class="dropdown-item", href="/changeSetting?name=uiTheme&value=light")
 										if (session.uiTheme == "light" || session.uiTheme == "")
 											i(class="fas fa-check")
-										span  Light
+										span  #{__("headergear.theme.light")}
 									a(class="dropdown-item", href="/changeSetting?name=uiTheme&value=dark")
 										if (session.uiTheme == "dark")
 											i(class="fas fa-check")
-										span  Dark
+										span  #{__("headergear.theme.dark")}
 
 		if (host && port && !homepage && config.site.header.showToolsSubheader)
 			div(id="sub-menu", class="container mb-2 pt-2 d-lg-block d-none border-top", style="")

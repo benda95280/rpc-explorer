@@ -61,10 +61,10 @@ if(process.env.BTCEXP_HTTPS) {
    var helmet = require("helmet");
    app.use(helmet());
 }
-// app.configure(() => {
-// 	app.use(translations.init);
-// });
+
+//init translation
 app.use(translations.init);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
@@ -72,6 +72,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('pug', (path, options, fn) => {
 	options.debug = false;
 	return pug.__express.call(null, path, options, fn);
+});
+
+app.use(function(req, res, next) {
+    // express helper for natively supported engines
+    res.locals.__ = res.__ = function() {
+        return translations.__.apply(req, arguments);
+    };
+
+    next();
 });
 
 app.set('view engine', 'pug');
